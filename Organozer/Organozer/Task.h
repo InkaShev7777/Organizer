@@ -99,15 +99,48 @@ public:
 			std::cout << ex << "\n";
 		}
 	}
+	void setMonth(int month)
+	{
+		try
+		{
+			if (month < 1 || month > 12)
+			{
+				throw"Error month";
+			}
+			this->month = month;
+		}
+		catch (const char* ex)
+		{
+			std::cout << ex << "\n";
+		}
+	}
+	void setYear(int year)
+	{
+		try
+		{
+			if (year < 1900 || year > 2040)
+			{
+				throw"Error year";
+			}
+			this->year = year;
+		}
+		catch (const char* ex)
+		{
+			std::cout << ex << "\n";
+		}
+	}
+	void setAddress(std::string address)
+	{
+		this->address = address;
+	}
 	std::string getTitle()
 	{
 		return (std::string)this->title;
 	}
 	virtual void print()
 	{
-		
-		std::cout <<"Title: "<< this->title << "\tDay: " << this->day << "\tMonth: " << this->month << "\tYear: " << this->year << "\tAddress: " << this->address << "\n";
-		
+		std::cout <<"Title: "<< this->title << "\tDay: " << this->day << "\tMonth: " << this->month << "\tYear: " << this->year 
+			<< "\tAddress: " << this->address << "\n";
 	}
 };
 

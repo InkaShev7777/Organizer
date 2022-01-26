@@ -14,10 +14,12 @@ struct Node
 class Kol_Task
 {
 	Node* head;
+	int size;
 public:
 	Kol_Task()
 	{
 		this->head = nullptr;
+		this->size = 0;
 	}
 	void Add(Task* task)
 	{
@@ -26,6 +28,7 @@ public:
 		{
 			tmp = new Node(task);
 			this->head = tmp;
+			this->size++;
 		}
 		else
 		{
@@ -34,6 +37,7 @@ public:
 				tmp = tmp->next;
 			}
 			tmp->next = new Node(task);
+			this->size++;
 		}
 	}
 	void Shoow()
@@ -45,56 +49,108 @@ public:
 			iter = iter->next;
 		}
 	}
-	/*bool str_str(std::string title)
+	void Dell(int ind)
 	{
-		Node* tmp = this->head;
-		Task* task;
-		int f = 0;
-		const char* ch1 = title.c_str();
-		const char* ch2 = task->getTitle().c_str();
-		while (tmp!=nullptr)
+		if (ind > this->size || ind < 1)
 		{
-			for (int i = 0;i < title.length();i++)
-			{
-				if (ch1[i] == ch2[i])
-				{
-					f++;
-				}
-			}
-			tmp = tmp->next;
+			throw "Error index";
 		}
-		if (f == title.length())
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}*/
-	void Dell(std::string title)
-	{
 		Node* iter = this->head;
-		if (iter->name->getTitle() == title)
+		int f = 0;
+		if (ind == 1)
 		{
 			this->head = iter->next;
+			size--;
+			return;
 		}
 		else
 		{
-			while (iter->next!= nullptr)
+			for (int i = 1;i < ind - 1;i++)
 			{
-				if (iter->name->getTitle() == title)
-				{
-					iter->next = iter->next->next;
-				}
-				if (iter->next->name->getTitle() == title)
-				{
-					iter->next = nullptr;
-				}
+				iter = iter->next;
+				f++;
+			}
+			iter->next = iter->next->next;
+		}
+		if (ind == size)
+		{
+			iter->next = nullptr;
+		}
+		size--;
+	}
+	void setTitle(std::string title,int ind)
+	{
+		int f = 0;
+		Node* iter = this->head;
+		if (ind < 1 || ind> this->size)
+		{
+			throw "Error index";
+		}
+		else
+		{
+			for (int i = 1;i < ind;i++)
+			{
 				iter = iter->next;
 			}
+			iter->name->setTitle(title);
 		}
 	}
-
+	void setDay(int day, int ind)
+	{
+		Node* iter = this->head;
+		if (ind < 1 || ind> this->size)
+		{
+			throw "Error index";
+		}
+		else
+		{
+			for (int i = 1;i < ind;i++)
+			{
+				iter = iter->next;
+			}
+			iter->name->setDay(day);
+		}
+	}
+	void setMonth(int month, int ind)
+	{
+		Node* iter = this->head;
+		if (ind < 1 || ind> this->size)
+		{
+			throw "Error index";
+		}
+		else
+		{
+			for (int i = 1;i < ind;i++)
+			{
+				iter = iter->next;
+			}
+			iter->name->setMonth(month);
+		}
+	}
+	void setYear(int ind, int year)
+	{
+		Node* iter = this->head;
+		if (ind < 1 || ind> this->size)
+		{
+			throw "Error index";
+		}
+		else
+		{
+			for (int i = 1;i < ind;i++)
+			{
+				iter = iter->next;
+			}
+			iter->name->setYear(year);
+		}
+	}
+	void setAddress(int ind, std::string address)
+	{
+		Node* iter = this->head;
+		for (int i = 1;i < ind;i++)
+		{
+			iter = iter->next;
+		}
+		iter->name->setAddress(address);
+	}
 };
 
