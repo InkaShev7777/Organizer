@@ -41,8 +41,15 @@ int main()
 			cin >> year;
 			cout << "Enter address: ";
 			cin >> address;
-			task = new Task(taskk, day, month, year, address);
-			kt.Add(task);
+			try
+			{
+				task = new Task(taskk, day, month, year, address);
+				kt.Add(task);
+			}
+			catch (const char* ex)
+			{
+				cout << ex << "\n";
+			}
 			system("pause");
 			system("cls");
 			break;

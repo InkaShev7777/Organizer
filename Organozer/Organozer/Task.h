@@ -39,8 +39,6 @@ public:
 	}
 	Task(std::string title,int day,int month,int year,std::string address)
 	{
-		try
-		{
 			if (isAlpha(title) == 1)
 			{
 				throw "Error title";
@@ -63,11 +61,6 @@ public:
 			this->year = year;
 			this->address = address;
 			std::cout << "\n\t\tSuccessful Addition\n\n\n";
-		}
-		catch (const char* ex)
-		{
-			std::cout << ex << "\n";
-		}
 	}
 	void setTitle(std::string task)
 	{
